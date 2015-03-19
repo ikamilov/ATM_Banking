@@ -52,8 +52,7 @@ int main() {
             
             case 4:
                 menuExit();
-                break;
-            
+                return 0;
                 
             default:
                 errorMessage();
@@ -65,16 +64,17 @@ int main() {
         printf("< 1 > Yes\n");
         printf("< 2 > No\n");
         scanf("%d", &choose);
-    
+        
+        
+        
         if (choose == 2) {
             again = false;
             menuExit();
+            
         }
-        
-        
-    
-    }
-    
+       
+}
+
     
     return 0;
 }//main code
@@ -88,7 +88,7 @@ void mainMenu() {
     
     printf("******************Hello!*******************\n");
     printf("**********Welcome to ATM Banking***********\n\n");
-    printf("****Please choose one the options below****\n");
+    printf("****Please choose one of the options below****\n");
     printf("< 1 >  Check Balance\n");
     printf("< 2 >  Deposit\n");
     printf("< 3 >  Withdraw\n");
@@ -105,72 +105,79 @@ void checkBalance(float balance) {
 float moneyDeposit(float balance) {
     float deposit;
     printf("You choose to Deposit a money\n");
+    printf("$$$$Your Balance is: $%.2f\n\n", balance);
     printf("****Enter your amount to Deposit\n");
     scanf("%f", &deposit);
     
+    
     balance += deposit;
     
-    printf("****Your Available Balance is:   $%.2f\n\n", balance);
+    printf("****Your New Balance is:   $%.2f\n\n", balance);
     return balance;
     
 }//money deposit
 
 float moneyWithdraw(float balance) {
     float withdraw;
+    bool back = true;
     
     printf("You choose to Withdraw a money\n");
-    printf("Enter your amount to withdraw\n");
+    printf("$$$$Your Balance is: $%.2f\n\n", balance);
+    
+    while (back) {
+    printf("Enter your amount to withdraw:\n");
     scanf("%f", &withdraw);
     
+    
     if (withdraw < balance) {
-        
+        back = false;
         balance -= withdraw;
         printf("$$$$Your withdrawing money is:  $%.2f\n", withdraw);
-        printf("****Your Available Balance is:   $%.2f\n\n", balance);
+        printf("****Your New Balance is:   $%.2f\n\n", balance);
         
     }
     
-    else     {
-        printf("You cannot withdraw this money\n");
-        printf("You don't have this money\n");
+        else  {
+        
+        printf("+++You don't have enough money+++\n");
         printf("Please contact to your Bank Customer Services\n");
-        printf("****Your Available Balance is:   $%.2f\n\n", balance);
+        printf("****Your Balance is:   $%.2f\n\n", balance);
     
     }
-    
+    }
     return balance;
     
     
 }//money withdraw
 
 void menuExit() {
-    printf("Take your receipt!!!\n");
-    printf("Thank you for using ATM Banking!!!\n");
-    printf("We Appreciate your Business!!!\n");
+    printf("--------------Take your receipt!!!------------------\n");
+    printf("-----Thank you for using ATM Banking Machine!!!-----\n");
+    printf("-----Developed by Islam_Kamilov_in_C_Program!!!-----\n");
+    
     
 }//exit menu
 
 void errorMessage() {;
-    printf("You entered invalid number!!!\n");
+    printf("+++!!!You selected invalid number!!!+++\n");
 }//error message
+
 /* Sample Output
+
 
 ******************Hello!*******************
 **********Welcome to ATM Banking***********
 
-****Please choose one the options below****
+****Please choose one of the options below****
 < 1 >  Check Balance
 < 2 >  Deposit
 < 3 >  Withdraw
 < 4 >  Exit
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-Your Selection:	3
-You choose to Withdraw a money
-Enter your amount to withdraw
-10000
-$$$$Your withdrawing money is:  $10000.00
-****Your Available Balance is:   $5000.00
+Your Selection:	1
+You Choose to See your Balance
+****Your Available Balance is:   $15000.00
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 Would you like to do another transaction:
@@ -180,7 +187,7 @@ Would you like to do another transaction:
 ******************Hello!*******************
 **********Welcome to ATM Banking***********
 
-****Please choose one the options below****
+****Please choose one of the options below****
 < 1 >  Check Balance
 < 2 >  Deposit
 < 3 >  Withdraw
@@ -189,9 +196,11 @@ Would you like to do another transaction:
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 Your Selection:	2
 You choose to Deposit a money
+$$$$Your Balance is: $15000.00
+
 ****Enter your amount to Deposit
-200
-****Your Available Balance is:   $5200.00
+1444
+****Your New Balance is:   $16444.00
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 Would you like to do another transaction:
@@ -201,7 +210,7 @@ Would you like to do another transaction:
 ******************Hello!*******************
 **********Welcome to ATM Banking***********
 
-****Please choose one the options below****
+****Please choose one of the options below****
 < 1 >  Check Balance
 < 2 >  Deposit
 < 3 >  Withdraw
@@ -210,22 +219,38 @@ Would you like to do another transaction:
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 Your Selection:	3
 You choose to Withdraw a money
-Enter your amount to withdraw
-8000
-You cannot withdraw this money
-You don't have this money
+$$$$Your Balance is: $16444.00
+
+Enter your amount to withdraw:
+600000
++++You don't have enough money+++
 Please contact to your Bank Customer Services
-****Your Available Balance is:   $5200.00
+****Your Balance is:   $16444.00
+
+Enter your amount to withdraw:
+14000
+$$$$Your withdrawing money is:  $14000.00
+****Your New Balance is:   $2444.00
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 Would you like to do another transaction:
 < 1 > Yes
 < 2 > No
-2
-Take your receipt!!!
-Thank you for using ATM Banking!!!
-We Appreciate your Business!!!
+1
+******************Hello!*******************
+**********Welcome to ATM Banking***********
+
+****Please choose one of the options below****
+< 1 >  Check Balance
+< 2 >  Deposit
+< 3 >  Withdraw
+< 4 >  Exit
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Your Selection:	4
+--------------Take your receipt!!!------------------
+-----Thank you for using ATM Banking Machine!!!-----
+-----Developed by Islam_Kamilov_in_C_Program!!!-----
 Program ended with exit code: 0
 
 */
-
